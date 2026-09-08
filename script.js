@@ -28,7 +28,7 @@ async function buscarCEP() {
     }
 }
 
-// Função para validar o CPF no Hub do Desenvolvedor
+// Função para validar o CPF (Conectada ao seu Back-end Python local)
 async function validarCPF() {
     const cpf = document.getElementById('cpf').value.replace(/\D/g, '');
     const dataNasc = document.getElementById('dataNasc').value;
@@ -39,33 +39,27 @@ async function validarCPF() {
         return;
     }
 
-    // AVISO: Em um sistema real, NUNCA deixe seu token exposto aqui!
-    const token = '216767750hzDNQCcbyx391367600';
-    
-    // Removido o "?xml" para que a API retorne em JSON (padrão web)
-    const url = `https://ws.hubdodesenvolvedor.com.br/v2/cpf/?cpf=${cpf}&data=${dataNasc}&token=${token}`;
+    // Aponta para a sua API em Python local
+    const url = `http://127.0.0.1:5000/validar-cpf?cpf=${cpf}&data=${dataNasc}`;
 
     statusCpf.textContent = "Consultando...";
-    statusCpf.style.color = "blue";
+    statusCpf.style.color = "#3b82f6"; 
 
     try {
         const resposta = await fetch(url);
-        
-        // Se a API bloquear por CORS (muito comum em consultas de CPF direto do navegador), 
-        // você precisará fazer essa requisição via Back-end (Python, Node, PHP).
         const dados = await resposta.json();
 
         if (dados.status && dados.status === true) {
             statusCpf.textContent = `CPF Válido! Nome registrado: ${dados.result.nome_da_pf}`;
-            statusCpf.style.color = "green";
+            statusCpf.style.color = "#22c55e"; 
         } else {
             statusCpf.textContent = "CPF Inválido ou dados não conferem.";
-            statusCpf.style.color = "red";
+            statusCpf.style.color = "#ef4444"; 
         }
 
     } catch (erro) {
         console.error('Erro ao validar CPF:', erro);
-        statusCpf.textContent = "Erro ao consultar a API. Pode ser bloqueio de CORS (necessário usar Back-end).";
-        statusCpf.style.color = "red";
+        statusCpf.textContent = "Erro de conexão. O back-end em Python está rodando?";
+        statusCpf.style.color = "#ef4444";
     }
 }
