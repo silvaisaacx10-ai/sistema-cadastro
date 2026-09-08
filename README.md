@@ -59,13 +59,15 @@ graph TD;
 ```
 
 ##    🛠 Tecnologias Utilizadas
-HTML5 (Estruturação semântica e organização de blocos)
+HTML5: Estruturação semântica e organização de blocos.
 
-CSS3 (Estilização avançada, Flexbox, transições fluidas e paleta Dark Mode)
+CSS3: Estilização avançada, Flexbox, transições fluidas e paleta Dark Mode.
 
-JavaScript Vanilla (Lógica assíncrona com async/await, consumo de APIs REST via fetch e manipulação direta do DOM)
+JavaScript Vanilla: Lógica assíncrona com async/await, consumo de APIs REST via fetch e manipulação direta do DOM.
 
-Git & GitHub (Versionamento de código e deploy contínuo via GitHub Pages)
+Python & Flask: Back-end local responsável por proteger as chaves de API sensíveis e intermediar as requisições (evitando bloqueios de CORS).
+
+Git & GitHub: Versionamento de código e deploy contínuo via GitHub Pages.
 
 ## 👨‍💻 Pessoas Desenvolvedoras
     * **Isaac Victor Mariano Silva**  
